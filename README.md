@@ -38,6 +38,22 @@ graph TD
 
 ![Architecture Diagram](diagrams/architecture.png)
 
+### Workflow
+
+The data processing workflow involves several stages, from ingestion to final reporting:
+
+```mermaid
+graph LR
+    A[Raw Data] --> B(Data Ingestion)
+    B --> C{Data Validation}
+    C -- Valid --> D[Data Transformation]
+    C -- Invalid --> E[Error Handling]
+    D --> F[Data Processing Engine]
+    F --> G[Data Storage]
+    G --> H[Reporting & Visualization]
+    E --> H
+```
+
 ### Getting Started
 
 To get a local copy up and running, follow these simple steps.
@@ -102,6 +118,22 @@ graph TD
 ```
 
 ![Diagrama de Arquitetura](diagrams/architecture.png)
+
+### Fluxo de Trabalho
+
+O fluxo de trabalho de processamento de dados envolve várias etapas, desde a ingestão até o relatório final:
+
+```mermaid
+graph LR
+    A[Dados Brutos] --> B(Ingestão de Dados)
+    B --> C{Validação de Dados}
+    C -- Válido --> D[Transformação de Dados]
+    C -- Inválido --> E[Tratamento de Erros]
+    D --> F[Motor de Processamento de Dados]
+    F --> G[Armazenamento de Dados]
+    G --> H[Relatórios e Visualização]
+    E --> H
+```
 
 ### Primeiros Passos
 
