@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Big-Data-Processing-Engine</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+        h1, h2, h3 {
+            color: #0056b3;
+        }
+        .header {
+            background: #0056b3;
+            color: #fff;
+            padding: 1rem 0;
+            text-align: center;
+            border-radius: 8px 8px 0 0;
+            margin-bottom: 20px;
+        }
+        .header h1 {
+            margin: 0;
+            color: #fff;
+        }
+        .footer {
+            text-align: center;
+            padding: 20px;
+            background: #333;
+            color: #fff;
+            margin-top: 20px;
+            border-radius: 0 0 8px 8px;
+        }
+        .footer a {
+            color: #fff;
+            text-decoration: none;
+        }
+        .footer a:hover {
+            text-decoration: underline;
+        }
+        .section {
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        .section:last-child {
+            border-bottom: none;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 20px auto;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 5px;
+        }
+        pre {
+            background: #eee;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Big-Data-Processing-Engine</h1>
+    </div>
+    <div class="container">
+        <div class="section">
+            <h2>Overview</h2>
+            <p>This project, <strong>Big-Data-Processing-Engine</strong>, developed by Gabriel Demetrios Lafis, is an enterprise-grade system designed for efficient processing and analysis of large datasets. It leverages modern Java features and concurrent programming to handle data records, generate insightful summaries, and provide actionable recommendations.</p>
+        </div>
+
+        <div class="section">
+            <h2>Features</h2>
+            <ul>
+                <li><strong>Data Ingestion</strong>: Efficiently handles the collection and storage of data records.</li>
+                <li><strong>Concurrent Processing</strong>: Utilizes <code>ExecutorService</code> for parallel data processing, ensuring high throughput.</li>
+                <li><strong>Data Analysis</strong>: Calculates summary statistics (average, min, max, total records) and identifies key insights.</li>
+                <li><strong>Recommendation Engine</strong>: Generates data-driven recommendations based on analysis.</li>
+                <li><strong>Modular Design</strong>: Built with a clear separation of concerns, making it extensible and maintainable.</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>Architecture</h2>
+            <p>The system follows a modular architecture, as illustrated below:</p>
+            <img src="diagrams/architecture.png" alt="Architecture Diagram">
+        </div>
+
+        <div class="section">
+            <h2>Getting Started</h2>
+            <h3>Prerequisites</h3>
+            <ul>
+                <li>Java Development Kit (JDK) 17 or higher</li>
+                <li>Apache Maven 3.8.6 or higher</li>
+            </ul>
+
+            <h3>Installation</h3>
+            <pre><code>git clone https://github.com/GabrielDemetriosLafis/Big-Data-Processing-Engine.git
+cd Big-Data-Processing-Engine</code></pre>
+            <pre><code>mvn clean install</code></pre>
+
+            <h3>Usage</h3>
+            <pre><code>java -jar target/big-data-processing-engine-1.0.0.jar</code></pre>
+            <p>This will initialize the system with sample data, process it, and print the analysis results to the console.</p>
+        </div>
+    </div>
+    <div class="footer">
+        <p>&copy; 2025 Gabriel Demetrios Lafis. All rights reserved.</p>
+        <p><a href="https://github.com/GabrielDemetriosLafis/Big-Data-Processing-Engine/blob/main/LICENSE">License</a> | <a href="https://github.com/GabrielDemetriosLafis/Big-Data-Processing-Engine/blob/main/CONTRIBUTING.md">Contributing</a> | <a href="https://github.com/GabrielDemetriosLafis/Big-Data-Processing-Engine/blob/main/CODE_OF_CONDUCT.md">Code of Conduct</a></p>
+    </div>
+</body>
+</html>

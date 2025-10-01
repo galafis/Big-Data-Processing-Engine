@@ -1,148 +1,137 @@
 # Big-Data-Processing-Engine
 
+![Java](https://img.shields.io/badge/Java-17-blue?logo=java&logoColor=white)
+![Maven](https://img.shields.io/badge/Maven-3.8.6-red?logo=apache-maven&logoColor=white)
+![Tests](https://img.shields.io/badge/Tests-Passing-brightgreen)
+![License](https://img.shields.io/badge/License-MIT-green)
+
 ## English
 
-### 🚀 Overview
-High-performance big data processing engine with distributed computing capabilities
+## Overview
 
-This project demonstrates professional Java development skills with modern best practices, clean code architecture, and industry-standard implementations.
+This project, **Big-Data-Processing-Engine**, developed by Gabriel Demetrios Lafis, is an enterprise-grade system designed for efficient processing and analysis of large datasets. It leverages modern Java features and concurrent programming to handle data records, generate insightful summaries, and provide actionable recommendations.
 
-### 🛠️ Technology Stack
-Java, Apache Spark, Hadoop, big data, distributed computing
+### Features
 
-### ⚡ Features
-- Professional code architecture
-- Modern development practices
-- Comprehensive error handling
-- Performance optimized
-- Well-documented codebase
-- Industry-standard patterns
+*   **Data Ingestion**: Efficiently handles the collection and storage of data records.
+*   **Concurrent Processing**: Utilizes `ExecutorService` for parallel data processing, ensuring high throughput.
+*   **Data Analysis**: Calculates summary statistics (average, min, max, total records) and identifies key insights.
+*   **Recommendation Engine**: Generates data-driven recommendations based on analysis.
+*   **Modular Design**: Built with a clear separation of concerns, making it extensible and maintainable.
 
-### 🏃‍♂️ Quick Start
+### Architecture
+
+The system follows a modular architecture, as illustrated below:
+
+```mermaid
+graph TD
+    A[Data Source] --> B(Data Collection)
+    B --> C{BigDataProcessingSystem}
+    C --> D[Data Processing]
+    D --> E[Data Analysis]
+    E --> F[Insight & Recommendation Generation]
+    F --> G[Result Storage]
+    G --> H[Visualization/Reporting]
+```
+
+![Architecture Diagram](diagrams/architecture.png)
+
+### Getting Started
+
+To get a local copy up and running, follow these simple steps.
+
+#### Prerequisites
+
+*   Java Development Kit (JDK) 17 or higher
+*   Apache Maven 3.8.6 or higher
+
+#### Installation
+
+1.  **Clone the repository:**
+
+    ```bash
+    git clone https://github.com/GabrielDemetriosLafis/Big-Data-Processing-Engine.git
+    cd Big-Data-Processing-Engine
+    ```
+
+2.  **Build the project:**
+
+    ```bash
+    mvn clean install
+    ```
+
+#### Usage
+
+To run the system and see it in action, execute the main class:
 
 ```bash
-# Clone the repository
-git clone https://github.com/galafis/Big-Data-Processing-Engine.git
-
-# Navigate to project directory
-cd Big-Data-Processing-Engine
-
-# Follow language-specific setup instructions below
+java -jar target/big-data-processing-engine-1.0.0.jar
 ```
 
-### 📦 Installation & Setup
-
-```bash
-# Compile and run with Maven
-mvn clean compile
-mvn exec:java
-
-# Or compile manually
-javac -cp src/main/java src/main/java/com/galafis/*/*.java
-java -cp src/main/java com.galafis.*.Main
-```
-
-### 🎯 Use Cases
-- Professional development portfolio
-- Learning modern Java practices
-- Code reference and examples
-- Enterprise-grade implementations
-
-### 📊 Project Structure
-```
-Big-Data-Processing-Engine/
-├── README.md
-├── LICENSE
-├── pom.xml
-├── src/main/java/
-├── src/test/java/
-└── target/
-```
-
-### 🤝 Contributing
-Contributions are welcome! Please feel free to submit a Pull Request.
-
-### 📄 License
-This project is licensed under the MIT License - see the LICENSE file for details.
-
-### 👨‍💻 Author
-**Gabriel Demetrios Lafis**
-- Data Scientist & Engineer
-- Systems Developer & Analyst
-- Cybersecurity Specialist
-
----
+This will initialize the system with sample data, process it, and print the analysis results to the console.
 
 ## Português
 
-### 🚀 Visão Geral
-High-performance big data processing engine with distributed computing capabilities
+## Visão Geral
 
-Este projeto demonstra habilidades profissionais de desenvolvimento em Java com práticas modernas, arquitetura de código limpo e implementações padrão da indústria.
+Este projeto, **Big-Data-Processing-Engine**, desenvolvido por Gabriel Demetrios Lafis, é um sistema de nível empresarial projetado para o processamento e análise eficientes de grandes conjuntos de dados. Ele aproveita os recursos modernos do Java e a programação concorrente para lidar com registros de dados, gerar resumos perspicazes e fornecer recomendações acionáveis.
 
-### 🛠️ Stack Tecnológica
-Java, Apache Spark, Hadoop, big data, distributed computing
+### Funcionalidades
 
-### ⚡ Funcionalidades
-- Arquitetura de código profissional
-- Práticas modernas de desenvolvimento
-- Tratamento abrangente de erros
-- Otimizado para performance
-- Base de código bem documentada
-- Padrões da indústria
+*   **Ingestão de Dados**: Lida eficientemente com a coleta e armazenamento de registros de dados.
+*   **Processamento Concorrente**: Utiliza `ExecutorService` para processamento paralelo de dados, garantindo alta taxa de transferência.
+*   **Análise de Dados**: Calcula estatísticas de resumo (média, mínimo, máximo, total de registros) e identifica insights chave.
+*   **Mecanismo de Recomendação**: Gera recomendações baseadas em dados a partir da análise.
+*   **Design Modular**: Construído com uma clara separação de preocupações, tornando-o extensível e de fácil manutenção.
 
-### 🏃‍♂️ Início Rápido
+### Arquitetura
 
-```bash
-# Clone o repositório
-git clone https://github.com/galafis/Big-Data-Processing-Engine.git
+O sistema segue uma arquitetura modular, conforme ilustrado abaixo:
 
-# Navegue para o diretório do projeto
-cd Big-Data-Processing-Engine
-
-# Siga as instruções de configuração específicas da linguagem abaixo
+```mermaid
+graph TD
+    A[Fonte de Dados] --> B(Coleta de Dados)
+    B --> C{BigDataProcessingSystem}
+    C --> D[Processamento de Dados]
+    D --> E[Análise de Dados]
+    E --> F[Geração de Insights e Recomendações]
+    F --> G[Armazenamento de Resultados]
+    G --> H[Visualização/Relatórios]
 ```
 
-### 📦 Instalação e Configuração
+![Diagrama de Arquitetura](diagrams/architecture.png)
+
+### Primeiros Passos
+
+Para ter uma cópia local e funcionando, siga estes passos simples.
+
+#### Pré-requisitos
+
+*   Java Development Kit (JDK) 17 ou superior
+*   Apache Maven 3.8.6 ou superior
+
+#### Instalação
+
+1.  **Clone o repositório:**
+
+    ```bash
+    git clone https://github.com/GabrielDemetriosLafis/Big-Data-Processing-Engine.git
+    cd Big-Data-Processing-Engine
+    ```
+
+2.  **Construa o projeto:**
+
+    ```bash
+    mvn clean install
+    ```
+
+#### Uso
+
+Para executar o sistema e vê-lo em ação, execute a classe principal:
 
 ```bash
-# Compile e execute com Maven
-mvn clean compile
-mvn exec:java
-
-# Ou compile manualmente
-javac -cp src/main/java src/main/java/com/galafis/*/*.java
-java -cp src/main/java com.galafis.*.Main
+java -jar target/big-data-processing-engine-1.0.0.jar
 ```
 
-### 🎯 Casos de Uso
-- Portfólio de desenvolvimento profissional
-- Aprendizado de práticas modernas em Java
-- Referência de código e exemplos
-- Implementações de nível empresarial
+Isso inicializará o sistema com dados de exemplo, os processará e imprimirá os resultados da análise no console.
 
-### 🤝 Contribuindo
-Contribuições são bem-vindas! Sinta-se à vontade para enviar um Pull Request.
-
-### 📄 Licença
-Este projeto está licenciado sob a Licença MIT - veja o arquivo LICENSE para detalhes.
-
-### 👨‍💻 Autor
-**Gabriel Demetrios Lafis**
-- Cientista e Engenheiro de Dados
-- Desenvolvedor e Analista de Sistemas
-- Especialista em Segurança Cibernética
-
----
-
-⭐ **Se este projeto foi útil para você, considere dar uma estrela!**
-
-
-## 📋 Descrição
-
-Descreva aqui o conteúdo desta seção.
-
-
-## 💻 Uso
-
-Descreva aqui o conteúdo desta seção.
