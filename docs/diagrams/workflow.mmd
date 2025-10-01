@@ -1,0 +1,25 @@
+graph TD
+    A[Start] --> B(Data Ingestion)
+    B --> C{Data Validation Preprocessing}
+    C --> D[Data Storage Raw]
+    D --> E(Batch Processing)
+    D --> F(Stream Processing)
+    E --> G[Processed Data Storage]
+    F --> G
+    G --> H{Data Analysis ML Models}
+    H --> I[Insights Recommendations]
+    I --> J(Reporting Visualization)
+    J --> K[End]
+
+    style A fill:#f9f,stroke:#333,stroke-width:2px
+    style B fill:#bbf,stroke:#333,stroke-width:2px
+    style C fill:#ccf,stroke:#333,stroke-width:2px
+    style D fill:#fcf,stroke:#333,stroke-width:2px
+    style E fill:#ccf,stroke:#333,stroke-width:2px
+    style F fill:#ccf,stroke:#333,stroke-width:2px
+    style G fill:#fcf,stroke:#333,stroke-width:2px
+    style H fill:#ccf,stroke:#333,stroke-width:2px
+    style I fill:#bbf,stroke:#333,stroke-width:2px
+    style J fill:#bbf,stroke:#333,stroke-width:2px
+    style K fill:#f9f,stroke:#333,stroke-width:2px
+

@@ -3,58 +3,82 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Big-Data-Processing-Engine</title>
+    <title>Big-Data-Processing-Engine - Gabriel Demetrios Lafis</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
             margin: 0;
             padding: 0;
-            background-color: #f4f4f4;
+            background-color: #eef2f7;
             color: #333;
         }
         .container {
-            width: 80%;
+            width: 90%;
+            max-width: 1200px;
             margin: auto;
             overflow: hidden;
-            padding: 20px;
+            padding: 30px;
             background: #fff;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            margin-top: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            margin-top: 30px;
+            margin-bottom: 30px;
         }
         h1, h2, h3 {
             color: #0056b3;
+            border-bottom: 2px solid #e0e7ed;
+            padding-bottom: 10px;
+            margin-top: 30px;
+        }
+        h1 {
+            font-size: 2.5em;
+            text-align: center;
+            border-bottom: none;
+        }
+        h2 {
+            font-size: 2em;
+        }
+        h3 {
+            font-size: 1.5em;
         }
         .header {
-            background: #0056b3;
+            background: linear-gradient(135deg, #0056b3, #007bff);
             color: #fff;
-            padding: 1rem 0;
+            padding: 2rem 0;
             text-align: center;
-            border-radius: 8px 8px 0 0;
+            border-radius: 10px 10px 0 0;
             margin-bottom: 20px;
         }
         .header h1 {
             margin: 0;
             color: #fff;
+            font-size: 3em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        .header p {
+            font-size: 1.2em;
+            margin-top: 10px;
         }
         .footer {
             text-align: center;
-            padding: 20px;
-            background: #333;
-            color: #fff;
-            margin-top: 20px;
-            border-radius: 0 0 8px 8px;
+            padding: 25px;
+            background: #343a40;
+            color: #eef2f7;
+            margin-top: 30px;
+            border-radius: 0 0 10px 10px;
+            font-size: 0.9em;
         }
         .footer a {
-            color: #fff;
+            color: #8ab4f8;
             text-decoration: none;
+            margin: 0 10px;
         }
         .footer a:hover {
             text-decoration: underline;
         }
         .section {
-            margin-bottom: 20px;
+            margin-bottom: 30px;
             padding-bottom: 20px;
             border-bottom: 1px solid #eee;
         }
@@ -67,66 +91,92 @@
             display: block;
             margin: 20px auto;
             border: 1px solid #ddd;
-            border-radius: 4px;
+            border-radius: 8px;
             padding: 5px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
         }
         pre {
-            background: #eee;
-            padding: 10px;
-            border-radius: 5px;
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 15px;
+            border-radius: 8px;
             overflow-x: auto;
+            font-family: 'Consolas', 'Monaco', 'Andale Mono', 'Ubuntu Mono', monospace;
+            font-size: 0.95em;
+        }
+        code {
+            background-color: #e0e0e0;
+            padding: 2px 4px;
+            border-radius: 4px;
+            font-family: 'Consolas', 'Monaco', 'Andale Mono', 'Ubuntu Mono', monospace;
+        }
+        ul {
+            list-style-type: disc;
+            margin-left: 20px;
+        }
+        ul li {
+            margin-bottom: 8px;
         }
     </style>
 </head>
 <body>
     <div class="header">
         <h1>Big-Data-Processing-Engine</h1>
-        <img src="https://via.placeholder.com/1200x400?text=Big+Data+Processing+Engine" alt="Hero Image" class="hero-image">
+        <p>Um sistema de processamento de Big Data de nível empresarial</p>
+        <img src="docs/hero_image.png" alt="Hero Image" class="hero-image">
     </div>
     <div class="container">
         <div class="section">
             <h2>Overview</h2>
             <p>This project, <strong>Big-Data-Processing-Engine</strong>, developed by Gabriel Demetrios Lafis, is an enterprise-grade system designed for efficient processing and analysis of large datasets. It leverages modern Java features and concurrent programming to handle data records, generate insightful summaries, and provide actionable recommendations.</p>
+            <p>Este projeto, <strong>Big-Data-Processing-Engine</strong>, desenvolvido por Gabriel Demetrios Lafis, é um sistema de nível empresarial projetado para o processamento e análise eficientes de grandes conjuntos de dados. Ele aproveita os recursos modernos do Java e a programação concorrente para lidar com registros de dados, gerar resumos perspicazes e fornecer recomendações acionáveis.</p>
         </div>
 
         <div class="section">
-            <h2>Features</h2>
+            <h2>Features / Funcionalidades</h2>
             <ul>
-                <li><strong>Data Ingestion</strong>: Efficiently handles the collection and storage of data records.</li>
-                <li><strong>Concurrent Processing</strong>: Utilizes <code>ExecutorService</code> for parallel data processing, ensuring high throughput.</li>
-                <li><strong>Data Analysis</strong>: Calculates summary statistics (average, min, max, total records) and identifies key insights.</li>
-                <li><strong>Recommendation Engine</strong>: Generates data-driven recommendations based on analysis.</li>
-                <li><strong>Modular Design</strong>: Built with a clear separation of concerns, making it extensible and maintainable.</li>
+                <li><strong>Data Ingestion / Ingestão de Dados</strong>: Efficiently handles the collection and storage of data records. / Lida eficientemente com a coleta e armazenamento de registros de dados.</li>
+                <li><strong>Concurrent Processing / Processamento Concorrente</strong>: Utilizes <code>ExecutorService</code> for parallel data processing, ensuring high throughput. / Utiliza <code>ExecutorService</code> para processamento paralelo de dados, garantindo alta taxa de transferência.</li>
+                <li><strong>Data Analysis / Análise de Dados</strong>: Calculates summary statistics (average, min, max, total records) and identifies key insights. / Calcula estatísticas de resumo (média, mínimo, máximo, total de registros) e identifica insights chave.</li>
+                <li><strong>Recommendation Engine / Mecanismo de Recomendação</strong>: Generates data-driven recommendations based on analysis. / Gera recomendações baseadas em dados a partir da análise.</li>
+                <li><strong>Modular Design / Design Modular</strong>: Built with a clear separation of concerns, making it extensible and maintainable. / Construído com uma clara separação de preocupações, tornando-o extensível e de fácil manutenção.</li>
             </ul>
         </div>
 
         <div class="section">
-            <h2>Architecture</h2>
-            <p>The system follows a modular architecture, as illustrated below:</p>
-            <img src="diagrams/architecture.png" alt="Architecture Diagram">
+            <h2>Architecture / Arquitetura</h2>
+            <p>The system follows a modular architecture, as illustrated below: / O sistema segue uma arquitetura modular, conforme ilustrado abaixo:</p>
+            <img src="docs/diagrams/architecture.png" alt="Architecture Diagram">
         </div>
 
         <div class="section">
-            <h2>Getting Started</h2>
-            <h3>Prerequisites</h3>
+            <h2>Workflow / Fluxo de Trabalho</h2>
+            <p>The data processing workflow involves several stages, from ingestion to final reporting: / O fluxo de trabalho de processamento de dados envolve várias etapas, desde a ingestão até o relatório final:</p>
+            <img src="docs/diagrams/workflow.png" alt="Workflow Diagram">
+        </div>
+
+        <div class="section">
+            <h2>Getting Started / Primeiros Passos</h2>
+            <h3>Prerequisites / Pré-requisitos</h3>
             <ul>
-                <li>Java Development Kit (JDK) 17 or higher</li>
-                <li>Apache Maven 3.8.6 or higher</li>
+                <li>Java Development Kit (JDK) 17 or higher / Java Development Kit (JDK) 17 ou superior</li>
+                <li>Apache Maven 3.8.6 or higher / Apache Maven 3.8.6 ou superior</li>
             </ul>
 
-            <h3>Installation</h3>
+            <h3>Installation / Instalação</h3>
             <pre><code>git clone https://github.com/GabrielDemetriosLafis/Big-Data-Processing-Engine.git
 cd Big-Data-Processing-Engine</code></pre>
             <pre><code>mvn clean install</code></pre>
 
-            <h3>Usage</h3>
-            <pre><code>java -jar target/big-data-processing-engine-1.0.0.jar</code></pre>
-            <p>This will initialize the system with sample data, process it, and print the analysis results to the console.</p>
+            <h3>Usage / Uso</h3>
+            <pre><code>java -jar target/big-data-processing-engine-1.0.0-jar-with-dependencies.jar</code></pre>
+            <p>This will initialize the system with sample data, process it, and print the analysis results to the console. / Isso inicializará o sistema com dados de exemplo, os processará e imprimirá os resultados da análise no console.</p>
         </div>
     </div>
     <div class="footer">
         <p>&copy; 2025 Gabriel Demetrios Lafis. All rights reserved.</p>
-        <p><a href="https://github.com/GabrielDemetriosLafis/Big-Data-Processing-Engine/blob/main/LICENSE">License</a> | <a href="https://github.com/GabrielDemetriosLafis/Big-Data-Processing-Engine/blob/main/CONTRIBUTING.md">Contributing</a> | <a href="https://github.com/GabrielDemetriosLafis/Big-Data-Processing-Engine/blob/main/CODE_OF_CONDUCT.md">Code of Conduct</a></p>
+        <p><a href="https://github.com/GabrielDemetriosLafis/Big-Data-Processing-Engine/blob/main/LICENSE">License / Licença</a> | <a href="https://github.com/GabrielDemetriosLafis/Big-Data-Processing-Engine/blob/main/CONTRIBUTING.md">Contributing / Contribuição</a> | <a href="https://github.com/GabrielDemetriosLafis/Big-Data-Processing-Engine/blob/main/CODE_OF_CONDUCT.md">Code of Conduct / Código de Conduta</a></p>
     </div>
 </body>
 </html>
+

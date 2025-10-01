@@ -1,11 +1,11 @@
 # Big-Data-Processing-Engine
 
-![Hero Image](https://via.placeholder.com/1200x400?text=Big+Data+Processing+Engine+Hero) 
+![Hero Image](docs/hero_image.png)
 
-![Java](https://img.shields.io/badge/Java-17-blue?logo=java&logoColor=white)
-![Maven](https://img.shields.io/badge/Maven-3.8.6-red?logo=apache-maven&logoColor=white)
-![Tests](https://img.shields.io/badge/Tests-Passing-brightgreen)
-![License](https://img.shields.io/badge/License-MIT-green)
+[![Java](https://img.shields.io/badge/Java-17-blue?logo=java&logoColor=white)](https://www.java.com/)
+[![Maven](https://img.shields.io/badge/Maven-3.8.6-red?logo=apache-maven&logoColor=white)](https://maven.apache.org/)
+[![Tests](https://img.shields.io/badge/Tests-Passing-brightgreen)](./src/test/java/com/galafis/bigdataprocessingengine/BigDataProcessingSystemTest.java)
+[![License](https://img.shields.io/badge/License-MIT-green)](LICENSE)
 
 ## English
 
@@ -25,34 +25,13 @@ This project, **Big-Data-Processing-Engine**, developed by Gabriel Demetrios Laf
 
 The system follows a modular architecture, as illustrated below:
 
-```mermaid
-graph TD
-    A[Data Source] --> B(Data Collection)
-    B --> C{BigDataProcessingSystem}
-    C --> D[Data Processing]
-    D --> E[Data Analysis]
-    E --> F[Insight & Recommendation Generation]
-    F --> G[Result Storage]
-    G --> H[Visualization/Reporting]
-```
-
-![Architecture Diagram](diagrams/architecture.png)
+![Architecture Diagram](docs/diagrams/architecture.png)
 
 ### Workflow
 
 The data processing workflow involves several stages, from ingestion to final reporting:
 
-```mermaid
-graph LR
-    A[Raw Data] --> B(Data Ingestion)
-    B --> C{Data Validation}
-    C -- Valid --> D[Data Transformation]
-    C -- Invalid --> E[Error Handling]
-    D --> F[Data Processing Engine]
-    F --> G[Data Storage]
-    G --> H[Reporting & Visualization]
-    E --> H
-```
+![Workflow Diagram](docs/diagrams/workflow.png)
 
 ### Getting Started
 
@@ -83,7 +62,7 @@ To get a local copy up and running, follow these simple steps.
 To run the system and see it in action, execute the main class:
 
 ```bash
-java -jar target/big-data-processing-engine-1.0.0.jar
+java -jar target/big-data-processing-engine-1.0.0-jar-with-dependencies.jar
 ```
 
 This will initialize the system with sample data, process it, and print the analysis results to the console.
@@ -106,34 +85,13 @@ Este projeto, **Big-Data-Processing-Engine**, desenvolvido por Gabriel Demetrios
 
 O sistema segue uma arquitetura modular, conforme ilustrado abaixo:
 
-```mermaid
-graph TD
-    A[Fonte de Dados] --> B(Coleta de Dados)
-    B --> C{BigDataProcessingSystem}
-    C --> D[Processamento de Dados]
-    D --> E[Análise de Dados]
-    E --> F[Geração de Insights e Recomendações]
-    F --> G[Armazenamento de Resultados]
-    G --> H[Visualização/Relatórios]
-```
-
-![Diagrama de Arquitetura](diagrams/architecture.png)
+![Diagrama de Arquitetura](docs/diagrams/architecture.png)
 
 ### Fluxo de Trabalho
 
 O fluxo de trabalho de processamento de dados envolve várias etapas, desde a ingestão até o relatório final:
 
-```mermaid
-graph LR
-    A[Dados Brutos] --> B(Ingestão de Dados)
-    B --> C{Validação de Dados}
-    C -- Válido --> D[Transformação de Dados]
-    C -- Inválido --> E[Tratamento de Erros]
-    D --> F[Motor de Processamento de Dados]
-    F --> G[Armazenamento de Dados]
-    G --> H[Relatórios e Visualização]
-    E --> H
-```
+![Diagrama de Fluxo de Trabalho](docs/diagrams/workflow.png)
 
 ### Primeiros Passos
 
@@ -164,7 +122,7 @@ Para ter uma cópia local e funcionando, siga estes passos simples.
 Para executar o sistema e vê-lo em ação, execute a classe principal:
 
 ```bash
-java -jar target/big-data-processing-engine-1.0.0.jar
+java -jar target/big-data-processing-engine-1.0.0-jar-with-dependencies.jar
 ```
 
 Isso inicializará o sistema com dados de exemplo, os processará e imprimirá os resultados da análise no console.

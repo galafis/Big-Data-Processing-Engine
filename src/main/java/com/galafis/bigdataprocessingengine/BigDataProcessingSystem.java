@@ -5,6 +5,8 @@ import java.util.concurrent.*;
 import java.util.stream.Collectors;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Big-Data-Processing-Engine - Professional Java Implementation
@@ -15,6 +17,8 @@ import java.time.format.DateTimeFormatter;
  */
 public class BigDataProcessingSystem {
     
+    private static final Logger logger = LoggerFactory.getLogger(BigDataProcessingSystem.class);
+    
     private final List<DataRecord> dataRecords;
     private final ExecutorService executorService;
     private final Map<String, Object> configuration;
@@ -22,6 +26,11 @@ public class BigDataProcessingSystem {
     // Getter for testing purposes
     public List<DataRecord> getDataRecords() {
         return dataRecords;
+    }
+
+    // Method to check if the executor service is shut down
+    public boolean isShutdown() {
+        return executorService.isShutdown();
     }
     
     public BigDataProcessingSystem() {
@@ -39,6 +48,7 @@ public class BigDataProcessingSystem {
         configuration.put("timeout", 30000);
         configuration.put("retryAttempts", 3);
         configuration.put("enableLogging", true);
+        logger.info("System configuration initialized.");
     }
     
     /**
@@ -65,7 +75,7 @@ public class BigDataProcessingSystem {
         
         @Override
         public String toString() {
-            return String.format("DataRecord{id='%s', timestamp=%s, value=%.2f}", 
+            return String.format("DataRecord{id=\'%s\', timestamp=%s, value=%.2f}", 
                                id, timestamp.format(DateTimeFormatter.ISO_LOCAL_DATE_TIME), value);
         }
     }
@@ -99,9 +109,9 @@ public class BigDataProcessingSystem {
      */
     public CompletableFuture<Void> initialize() {
         return CompletableFuture.runAsync(() -> {
-            System.out.println("Initializing Big-Data-Processing-Engine System...");
+            logger.info("Initializing Big-Data-Processing-Engine System...");
             generateSampleData(1000);
-            System.out.println("System initialized with " + dataRecords.size() + " records");
+            logger.info("System initialized with {} records", dataRecords.size());
         }, executorService);
     }
     
@@ -127,6 +137,7 @@ public class BigDataProcessingSystem {
             
             dataRecords.add(record);
         }
+        logger.debug("Generated {} sample data records.", count);
     }
     
     /**
@@ -135,6 +146,7 @@ public class BigDataProcessingSystem {
     public CompletableFuture<AnalysisResult> processData() {
         return CompletableFuture.supplyAsync(() -> {
             long startTime = System.currentTimeMillis();
+            logger.info("Starting data processing...");
             
             try {
                 Map<String, Double> summary = calculateSummary();
@@ -142,10 +154,12 @@ public class BigDataProcessingSystem {
                 List<String> recommendations = generateRecommendations();
                 
                 long processingTime = System.currentTimeMillis() - startTime;
+                logger.info("Data processing completed in {}ms", processingTime);
                 
                 return new AnalysisResult(summary, insights, recommendations, processingTime);
                 
             } catch (Exception e) {
+                logger.error("Data processing failed", e);
                 throw new RuntimeException("Data processing failed", e);
             }
         }, executorService);
@@ -177,6 +191,7 @@ public class BigDataProcessingSystem {
             .orElse(0.0);
         summary.put("minValue", minValue);
         
+        logger.debug("Calculated summary statistics: {}", summary);
         return summary;
     }
     
@@ -189,7 +204,10 @@ public class BigDataProcessingSystem {
         // Category distribution analysis
         Map<String, Long> categoryCount = dataRecords.stream()
             .collect(Collectors.groupingBy(
-                record -> (String) record.getMetadata().get("category"),
+                record -> {
+                    String category = (String) record.getMetadata().get("category");
+                    return category != null ? category : "Unknown";
+                },
                 Collectors.counting()
             ));
         
@@ -199,7 +217,7 @@ public class BigDataProcessingSystem {
             .orElse("Unknown");
         
         double percentage = (categoryCount.get(dominantCategory) * 100.0) / dataRecords.size();
-        insights.add(String.format("Category '%s' represents %.1f%% of all data", dominantCategory, percentage));
+        insights.add(String.format("Category \'%s\' represents %.1f%% of all data", dominantCategory, percentage));
         
         // Value analysis
         double avgValue = dataRecords.stream().mapToDouble(DataRecord::getValue).average().orElse(0.0);
@@ -212,6 +230,7 @@ public class BigDataProcessingSystem {
             insights.add(String.format("%d records show significantly high values (>150%% of average)", highValueCount));
         }
         
+        logger.debug("Generated insights: {}", insights);
         return insights;
     }
     
@@ -237,7 +256,7 @@ public class BigDataProcessingSystem {
         if (recommendations.isEmpty()) {
             recommendations.add("No specific recommendations based on current data, but continuous monitoring is advised.");
         }
-
+        logger.debug("Generated recommendations: {}", recommendations);
         return recommendations;
     }
     
@@ -251,6 +270,7 @@ public class BigDataProcessingSystem {
         export.put("recordCount", dataRecords.size());
         export.put("systemVersion", "1.0.0");
         
+        logger.info("Data exported successfully. Record count: {}", dataRecords.size());
         return export;
     }
     
@@ -262,18 +282,21 @@ public class BigDataProcessingSystem {
         try {
             if (!executorService.awaitTermination(60, TimeUnit.SECONDS)) {
                 executorService.shutdownNow();
+                logger.warn("Executor service did not terminate in time, forcing shutdown.");
             }
         } catch (InterruptedException e) {
             executorService.shutdownNow();
             Thread.currentThread().interrupt();
+            logger.error("Shutdown interrupted.", e);
         }
+        logger.info("Big-Data-Processing-Engine System shutdown complete.");
     }
     
     /**
      * Main method for standalone execution
      */
     public static void main(String[] args) {
-        System.out.println("Starting Big-Data-Processing-Engine...");
+        logger.info("Starting Big-Data-Processing-Engine...");
         
         BigDataProcessingSystem system = new BigDataProcessingSystem();
         
@@ -285,18 +308,18 @@ public class BigDataProcessingSystem {
             AnalysisResult result = system.processData().get();
             
             // Display results
-            System.out.println("Analysis completed in " + result.getProcessingTimeMs() + "ms");
-            System.out.println("Summary: " + result.getSummary());
-            System.out.println("Insights: " + result.getInsights());
-            System.out.println("Recommendations: " + result.getRecommendations());
+            logger.info("Analysis completed in {}ms", result.getProcessingTimeMs());
+            logger.info("Summary: {}", result.getSummary());
+            logger.info("Insights: {}", result.getInsights());
+            logger.info("Recommendations: {}", result.getRecommendations());
             
-            System.out.println("System running successfully!");
+            logger.info("System running successfully!");
             
         } catch (Exception e) {
-            System.err.println("Error: " + e.getMessage());
-            e.printStackTrace();
+            logger.error("Error during system execution", e);
         } finally {
             system.shutdown();
         }
     }
 }
+
