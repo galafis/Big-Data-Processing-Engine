@@ -1,5 +1,7 @@
 # Big-Data-Processing-Engine
 
+![Hero Image](https://via.placeholder.com/1200x400?text=Big+Data+Processing+Engine+Hero) 
+
 ![Java](https://img.shields.io/badge/Java-17-blue?logo=java&logoColor=white)
 ![Maven](https://img.shields.io/badge/Maven-3.8.6-red?logo=apache-maven&logoColor=white)
 ![Tests](https://img.shields.io/badge/Tests-Passing-brightgreen)
