@@ -22,6 +22,7 @@ public class BigDataProcessingSystem {
     private final List<DataRecord> dataRecords;
     private final ExecutorService executorService;
     private final Map<String, Object> configuration;
+    private final IDataProcessor dataProcessor;
 
     // Getter for testing purposes
     public List<DataRecord> getDataRecords() {
@@ -37,6 +38,7 @@ public class BigDataProcessingSystem {
         this.dataRecords = new CopyOnWriteArrayList<>();
         this.executorService = Executors.newFixedThreadPool(10);
         this.configuration = new ConcurrentHashMap<>();
+        this.dataProcessor = new DefaultDataProcessor(executorService); // Injetando a implementação
         initializeConfiguration();
     }
     
@@ -75,7 +77,7 @@ public class BigDataProcessingSystem {
         
         @Override
         public String toString() {
-            return String.format("DataRecord{id=\'%s\', timestamp=%s, value=%.2f}", 
+            return String.format("DataRecord{id=\\'%s\\', timestamp=%s, value=%.2f}", 
                                id, timestamp.format(DateTimeFormatter.ISO_LOCAL_DATE_TIME), value);
         }
     }
@@ -144,120 +146,7 @@ public class BigDataProcessingSystem {
      * Process data and generate comprehensive analysis
      */
     public CompletableFuture<AnalysisResult> processData() {
-        return CompletableFuture.supplyAsync(() -> {
-            long startTime = System.currentTimeMillis();
-            logger.info("Starting data processing...");
-            
-            try {
-                Map<String, Double> summary = calculateSummary();
-                List<String> insights = generateInsights();
-                List<String> recommendations = generateRecommendations();
-                
-                long processingTime = System.currentTimeMillis() - startTime;
-                logger.info("Data processing completed in {}ms", processingTime);
-                
-                return new AnalysisResult(summary, insights, recommendations, processingTime);
-                
-            } catch (Exception e) {
-                logger.error("Data processing failed", e);
-                throw new RuntimeException("Data processing failed", e);
-            }
-        }, executorService);
-    }
-    
-    /**
-     * Calculate summary statistics
-     */
-    private Map<String, Double> calculateSummary() {
-        Map<String, Double> summary = new HashMap<>();
-        
-        summary.put("totalRecords", (double) dataRecords.size());
-        
-        double averageValue = dataRecords.stream()
-            .mapToDouble(DataRecord::getValue)
-            .average()
-            .orElse(0.0);
-        summary.put("averageValue", Math.round(averageValue * 100.0) / 100.0);
-        
-        double maxValue = dataRecords.stream()
-            .mapToDouble(DataRecord::getValue)
-            .max()
-            .orElse(0.0);
-        summary.put("maxValue", maxValue);
-        
-        double minValue = dataRecords.stream()
-            .mapToDouble(DataRecord::getValue)
-            .min()
-            .orElse(0.0);
-        summary.put("minValue", minValue);
-        
-        logger.debug("Calculated summary statistics: {}", summary);
-        return summary;
-    }
-    
-    /**
-     * Generate insights from data analysis
-     */
-    private List<String> generateInsights() {
-        List<String> insights = new ArrayList<>();
-        
-        // Category distribution analysis
-        Map<String, Long> categoryCount = dataRecords.stream()
-            .collect(Collectors.groupingBy(
-                record -> {
-                    String category = (String) record.getMetadata().get("category");
-                    return category != null ? category : "Unknown";
-                },
-                Collectors.counting()
-            ));
-        
-        String dominantCategory = categoryCount.entrySet().stream()
-            .max(Map.Entry.comparingByValue())
-            .map(Map.Entry::getKey)
-            .orElse("Unknown");
-        
-        double percentage = (categoryCount.get(dominantCategory) * 100.0) / dataRecords.size();
-        insights.add(String.format("Category \'%s\' represents %.1f%% of all data", dominantCategory, percentage));
-        
-        // Value analysis
-        double avgValue = dataRecords.stream().mapToDouble(DataRecord::getValue).average().orElse(0.0);
-        long highValueCount = dataRecords.stream()
-            .mapToDouble(DataRecord::getValue)
-            .filter(value -> value > avgValue * 1.5)
-            .count();
-        
-        if (highValueCount > 0) {
-            insights.add(String.format("%d records show significantly high values (>150%% of average)", highValueCount));
-        }
-        
-        logger.debug("Generated insights: {}", insights);
-        return insights;
-    }
-    
-    /**
-     * Generate recommendations based on analysis
-     */
-    private List<String> generateRecommendations() {
-        List<String> recommendations = new ArrayList<>();
-        
-        if (dataRecords.size() < 100) {
-            recommendations.add("Consider increasing data collection for more robust analysis");
-        }
-        
-        long recentDataCount = dataRecords.stream()
-            .filter(record -> record.getTimestamp().isAfter(LocalDateTime.now().minusDays(1)))
-            .count();
-        
-        if ((double) recentDataCount / dataRecords.size() < 0.1) {
-            recommendations.add("Data appears outdated - consider refreshing data sources");
-        }
-        
-        // Ensure at least one recommendation for testing purposes if no other conditions are met
-        if (recommendations.isEmpty()) {
-            recommendations.add("No specific recommendations based on current data, but continuous monitoring is advised.");
-        }
-        logger.debug("Generated recommendations: {}", recommendations);
-        return recommendations;
+        return dataProcessor.process(dataRecords);
     }
     
     /**

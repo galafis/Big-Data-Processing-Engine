@@ -1,0 +1,64 @@
+name: CI/CD Big Data Processing Engine
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          cache: maven
+
+      - name: Build with Maven
+        run: mvn -B clean install
+
+      - name: Run Tests
+        run: mvn test
+
+  deploy-gh-pages:
+    needs: build-and-test
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./Big-Data-Processing-Engine
+          # Incluir docs e index.html
+          exclude_assets: 'src target pom.xml'
+          # O diretório raiz do repositório contém index.html e a pasta docs
+          # O action `publish_dir` espera o conteúdo a ser publicado
+          # Vamos copiar os arquivos necessários para um diretório temporário para publicação
+      - name: Prepare for GitHub Pages deployment
+        run: |
+          mkdir gh-pages-temp
+          cp Big-Data-Processing-Engine/index.html gh-pages-temp/
+          cp -r Big-Data-Processing-Engine/docs gh-pages-temp/
+          cp Big-Data-Processing-Engine/LICENSE gh-pages-temp/
+          cp Big-Data-Processing-Engine/CODE_OF_CONDUCT.md gh-pages-temp/
+          cp Big-Data-Processing-Engine/CONTRIBUTING.md gh-pages-temp/
+          cp Big-Data-Processing-Engine/README.md gh-pages-temp/
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./gh-pages-temp
+          cname: big-data-processing-engine.galafis.com
+

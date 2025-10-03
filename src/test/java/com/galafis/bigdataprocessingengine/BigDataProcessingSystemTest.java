@@ -8,14 +8,17 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Executors;
 
 public class BigDataProcessingSystemTest {
 
     private BigDataProcessingSystem system;
+    private IDataProcessor dataProcessor;
 
     @Before
     public void setUp() {
         system = new BigDataProcessingSystem();
+        dataProcessor = new DefaultDataProcessor(Executors.newFixedThreadPool(1)); // Usar um pool pequeno para testes
     }
 
     @Test
@@ -72,13 +75,15 @@ public class BigDataProcessingSystemTest {
     }
 
     @Test
-    public void testCalculateSummary() throws ExecutionException, InterruptedException {
+    public void testDefaultDataProcessorSummaryCalculation() throws ExecutionException, InterruptedException {
         // Manually add some data for predictable summary calculation
-        system.getDataRecords().add(new BigDataProcessingSystem.DataRecord("rec1", LocalDateTime.now(), 10.0, Map.of()));
-        system.getDataRecords().add(new BigDataProcessingSystem.DataRecord("rec2", LocalDateTime.now(), 20.0, Map.of()));
-        system.getDataRecords().add(new BigDataProcessingSystem.DataRecord("rec3", LocalDateTime.now(), 30.0, Map.of()));
+        List<BigDataProcessingSystem.DataRecord> testRecords = List.of(
+                new BigDataProcessingSystem.DataRecord("rec1", LocalDateTime.now(), 10.0, Map.of()),
+                new BigDataProcessingSystem.DataRecord("rec2", LocalDateTime.now(), 20.0, Map.of()),
+                new BigDataProcessingSystem.DataRecord("rec3", LocalDateTime.now(), 30.0, Map.of())
+        );
 
-        BigDataProcessingSystem.AnalysisResult result = system.processData().get();
+        BigDataProcessingSystem.AnalysisResult result = dataProcessor.process(testRecords).get();
         Map<String, Double> summary = result.getSummary();
 
         assertEquals(3.0, summary.get("totalRecords"), 0.001);
@@ -88,13 +93,15 @@ public class BigDataProcessingSystemTest {
     }
 
     @Test
-    public void testGenerateInsights() throws ExecutionException, InterruptedException {
+    public void testDefaultDataProcessorInsightsGeneration() throws ExecutionException, InterruptedException {
         // Add data with specific categories to test insights
-        system.getDataRecords().add(new BigDataProcessingSystem.DataRecord("recA1", LocalDateTime.now(), 100.0, Map.of("category", "A")));
-        system.getDataRecords().add(new BigDataProcessingSystem.DataRecord("recA2", LocalDateTime.now(), 150.0, Map.of("category", "A")));
-        system.getDataRecords().add(new BigDataProcessingSystem.DataRecord("recB1", LocalDateTime.now(), 50.0, Map.of("category", "B")));
+        List<BigDataProcessingSystem.DataRecord> testRecords = List.of(
+                new BigDataProcessingSystem.DataRecord("recA1", LocalDateTime.now(), 100.0, Map.of("category", "A")),
+                new BigDataProcessingSystem.DataRecord("recA2", LocalDateTime.now(), 150.0, Map.of("category", "A")),
+                new BigDataProcessingSystem.DataRecord("recB1", LocalDateTime.now(), 50.0, Map.of("category", "B"))
+        );
 
-        BigDataProcessingSystem.AnalysisResult result = system.processData().get();
+        BigDataProcessingSystem.AnalysisResult result = dataProcessor.process(testRecords).get();
         List<String> insights = result.getInsights();
 
         assertFalse("Insights should not be empty", insights.isEmpty());
@@ -102,23 +109,24 @@ public class BigDataProcessingSystemTest {
     }
 
     @Test
-    public void testGenerateRecommendations() throws ExecutionException, InterruptedException {
+    public void testDefaultDataProcessorRecommendationsGeneration() throws ExecutionException, InterruptedException {
         // Test case for low data count recommendation
-        system.getDataRecords().clear(); // Clear existing data
-        system.getDataRecords().add(new BigDataProcessingSystem.DataRecord("rec1", LocalDateTime.now(), 10.0, Map.of()));
+        List<BigDataProcessingSystem.DataRecord> lowDataRecords = List.of(
+                new BigDataProcessingSystem.DataRecord("rec1", LocalDateTime.now(), 10.0, Map.of())
+        );
 
-        BigDataProcessingSystem.AnalysisResult result = system.processData().get();
-        List<String> recommendations = result.getRecommendations();
-        assertTrue(recommendations.stream().anyMatch(s -> s.contains("Consider increasing data collection")));
+        BigDataProcessingSystem.AnalysisResult resultLowData = dataProcessor.process(lowDataRecords).get();
+        List<String> recommendationsLowData = resultLowData.getRecommendations();
+        assertTrue(recommendationsLowData.stream().anyMatch(s -> s.contains("Consider increasing data collection")));
 
         // Test case for no specific recommendations
-        system.getDataRecords().clear();
+        List<BigDataProcessingSystem.DataRecord> sufficientDataRecords = new java.util.ArrayList<>();
         for (int i = 0; i < 200; i++) {
-            system.getDataRecords().add(new BigDataProcessingSystem.DataRecord("rec" + i, LocalDateTime.now().minusHours(i), 100.0, Map.of()));
+            sufficientDataRecords.add(new BigDataProcessingSystem.DataRecord("rec" + i, LocalDateTime.now().minusHours(i), 100.0, Map.of()));
         }
-        result = system.processData().get();
-        recommendations = result.getRecommendations();
-        assertTrue(recommendations.stream().anyMatch(s -> s.contains("No specific recommendations based on current data")));
+        BigDataProcessingSystem.AnalysisResult resultSufficientData = dataProcessor.process(sufficientDataRecords).get();
+        List<String> recommendationsSufficientData = resultSufficientData.getRecommendations();
+        assertTrue(recommendationsSufficientData.stream().anyMatch(s -> s.contains("No specific recommendations based on current data")));
     }
 
     @Test
