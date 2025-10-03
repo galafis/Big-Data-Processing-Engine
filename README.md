@@ -2,6 +2,8 @@
 
 ## 🖼️ Imagem Hero
 
+Uma representação visual da arquitetura e do fluxo de dados do sistema, destacando sua robustez e modularidade.
+
 ![Hero Image](docs/hero_image.png)
 
 [![Java](https://img.shields.io/badge/Java-17-blue?logo=java&logoColor=white)](https://www.java.com/)
@@ -33,7 +35,8 @@ The system follows a modular architecture, as illustrated below:
 
 The data processing workflow involves several stages, from ingestion to final reporting:
 
-![Workflow Diagram](docs/diagrams/workflow.mmd)
+![Workflow Diagram](docs/diagrams/workflow.png)
+
 
 ### Getting Started
 
@@ -93,7 +96,8 @@ O sistema segue uma arquitetura modular, conforme ilustrado abaixo:
 
 O fluxo de trabalho de processamento de dados envolve várias etapas, desde a ingestão até o relatório final:
 
-![Diagrama de Fluxo de Trabalho](docs/diagrams/workflow.mmd)
+![Diagrama de Fluxo de Trabalho](docs/diagrams/workflow.png)
+
 
 ### Primeiros Passos
 
