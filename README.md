@@ -66,8 +66,6 @@ Big-Data-Processing-Engine/
 │   │   └── java/             # Main Java source code
 │   │       └── com/galafis/bigdataprocessingengine/
 │   │           ├── BigDataProcessingSystem.java
-│   │           ├── DataRecord.java
-│   │           ├── AnalysisResult.java
 │   │           ├── IDataProcessor.java
 │   │           └── DefaultDataProcessor.java
 │   └── test/
@@ -131,9 +129,13 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 ### Contact
 
-Gabriel Demetrios Lafis - [Your Email/LinkedIn/GitHub Profile]
+Gabriel Demetrios Lafis - [gabriel.lafis@example.com](mailto:gabriel.lafis@example.com) | [LinkedIn](https://www.linkedin.com/in/gabriel-demetrios-lafis/) | [GitHub](https://github.com/galafis)
 
 Project Link: [https://github.com/galafis/Big-Data-Processing-Engine](https://github.com/galafis/Big-Data-Processing-Engine)
+
+## Hero Image
+
+![Hero Image](docs/hero_image.png)
 
 ---
 
@@ -197,8 +199,6 @@ Big-Data-Processing-Engine/
 │   │   └── java/             # Código fonte Java principal
 │   │       └── com/galafis/bigdataprocessingengine/
 │   │           ├── BigDataProcessingSystem.java
-│   │           ├── DataRecord.java
-│   │           ├── AnalysisResult.java
 │   │           ├── IDataProcessor.java
 │   │           └── DefaultDataProcessor.java
 │   └── test/
@@ -262,7 +262,7 @@ Distribuído sob a Licença MIT. Veja `LICENSE` para mais informações.
 
 ### Contato
 
-Gabriel Demetrios Lafis - [Seu Email/LinkedIn/Perfil GitHub]
+Gabriel Demetrios Lafis - [gabriel.lafis@example.com](mailto:gabriel.lafis@example.com) | [LinkedIn](https://www.linkedin.com/in/gabriel-demetrios-lafis/) | [GitHub](https://github.com/galafis)
 
 Link do Projeto: [https://github.com/galafis/Big-Data-Processing-Engine](https://github.com/galafis/Big-Data-Processing-Engine)
 
