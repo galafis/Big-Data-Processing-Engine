@@ -1,5 +1,7 @@
 # Big-Data-Processing-Engine
 
+## 🖼️ Imagem Hero
+
 ![Hero Image](docs/hero_image.png)
 
 [![Java](https://img.shields.io/badge/Java-17-blue?logo=java&logoColor=white)](https://www.java.com/)
@@ -9,7 +11,7 @@
 
 ## English
 
-## Overview
+### Overview
 
 This project, **Big-Data-Processing-Engine**, developed by Gabriel Demetrios Lafis, is an enterprise-grade system designed for efficient processing and analysis of large datasets. It leverages modern Java features and concurrent programming to handle data records, generate insightful summaries, and provide actionable recommendations.
 
@@ -31,7 +33,7 @@ The system follows a modular architecture, as illustrated below:
 
 The data processing workflow involves several stages, from ingestion to final reporting:
 
-![Workflow Diagram](docs/diagrams/workflow.png)
+![Workflow Diagram](docs/diagrams/workflow.mmd)
 
 ### Getting Started
 
@@ -69,7 +71,7 @@ This will initialize the system with sample data, process it, and print the anal
 
 ## Português
 
-## Visão Geral
+### Visão Geral
 
 Este projeto, **Big-Data-Processing-Engine**, desenvolvido por Gabriel Demetrios Lafis, é um sistema de nível empresarial projetado para o processamento e análise eficientes de grandes conjuntos de dados. Ele aproveita os recursos modernos do Java e a programação concorrente para lidar com registros de dados, gerar resumos perspicazes e fornecer recomendações acionáveis.
 
@@ -91,7 +93,7 @@ O sistema segue uma arquitetura modular, conforme ilustrado abaixo:
 
 O fluxo de trabalho de processamento de dados envolve várias etapas, desde a ingestão até o relatório final:
 
-![Diagrama de Fluxo de Trabalho](docs/diagrams/workflow.png)
+![Diagrama de Fluxo de Trabalho](docs/diagrams/workflow.mmd)
 
 ### Primeiros Passos
 
