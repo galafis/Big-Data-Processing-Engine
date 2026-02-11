@@ -2,8 +2,6 @@
 
 [![Java](https://img.shields.io/badge/Java-17+-blue?logo=java&logoColor=white)](https://www.java.com/)
 [![Maven](https://img.shields.io/badge/Maven-3.8.6+-red?logo=apache-maven&logoColor=white)](https://maven.apache.org/)
-[![Build Status](https://img.shields.io/badge/Build-Passing-brightgreen)](https://github.com/galafis/Big-Data-Processing-Engine/actions)
-[![Tests](https://img.shields.io/badge/Tests-Passing-brightgreen)](./src/test/java/com/galafis/bigdataprocessingengine/BigDataProcessingSystemTest.java)
 [![License](https://img.shields.io/badge/License-MIT-green)](LICENSE)
 
 ## English
