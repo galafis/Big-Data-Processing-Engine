@@ -10,6 +10,20 @@
 
 This project, **Big-Data-Processing-Engine**, developed by Gabriel Demetrios Lafis, is an enterprise-grade system meticulously engineered for the **efficient processing and insightful analysis of large datasets**. Leveraging modern Java features and robust concurrent programming paradigms, it provides a scalable and maintainable solution for complex big data challenges. The system is designed to ingest, process, analyze, and generate actionable recommendations from vast quantities of data, making it an invaluable asset for data-driven decision-making.
 
+```mermaid
+flowchart LR
+    A[Data Sources\nFiles / Streams\nDatabases] --> B[Ingestion\nData Collection\nIntegrity Checks]
+    B --> C[Processing Engine\nExecutorService\nParallel Workers]
+    C --> D[Transformation\nStatistical Analysis\nInsight Generation]
+    D --> E[Output Sinks\nConsole / Export\nRecommendations]
+
+    style A fill:#B07D62,color:#fff
+    style B fill:#5E8C61,color:#fff
+    style C fill:#2E4057,color:#fff
+    style D fill:#048A81,color:#fff
+    style E fill:#54C6EB,color:#000
+```
+
 ### Features
 
 *   **Data Ingestion**: Robust mechanisms for collecting and storing diverse data records, ensuring data integrity and availability.
